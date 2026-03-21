@@ -1,210 +1,118 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Auxilio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Crosshair, Zap, Gauge, Wifi } from "lucide-react";
 
-      /* FULL PURPLE BACKGROUND */
-      background: radial-gradient(circle at top, #2b0b4f, #0b0515 80%);
-    }
+interface ToggleItemProps {
+  icon: React.ReactNode;
+  label: string;
+  sublabel?: string;
+  isOn: boolean;
+  onToggle: () => void;
+  delay: number;
+}
 
-    .container {
-      width: 360px;
-    }
-
-    .header {
-      text-align: center;
-      margin-bottom: 25px;
-    }
-
-    .logo {
-      width: 90px;
-      height: 90px;
-      margin: auto;
-      border-radius: 24px;
-      background: linear-gradient(135deg, #8a2be2, #a855f7);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 0 60px rgba(168,85,247,0.7);
-      font-size: 34px;
-    }
-
-    h1 {
-      margin: 12px 0 5px;
-      font-size: 30px;
-    }
-
-    .sub {
-      color: #bbb;
-      font-size: 12px;
-      letter-spacing: 4px;
-    }
-
-    .card {
-      background: rgba(25,15,45,0.8);
-      border-radius: 24px;
-      padding: 18px;
-      margin: 15px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255,255,255,0.05);
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-    }
-
-    .left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 16px;
-      background: #2b1a4a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #c084fc;
-      font-size: 20px;
-      box-shadow: inset 0 0 10px rgba(168,85,247,0.2);
-    }
-
-    .text small {
-      color: #aaa;
-      font-size: 12px;
-    }
-
-    /* 🔥 PREMIUM TOGGLE */
-    .toggle {
-      width: 60px;
-      height: 32px;
-      background: #2a2a3d;
-      border-radius: 50px;
-      position: relative;
-      cursor: pointer;
-      transition: 0.4s;
-    }
-
-    .toggle::before {
-      content: "";
-      width: 26px;
-      height: 26px;
-      position: absolute;
-      top: 3px;
-      left: 4px;
-      border-radius: 50%;
-      background: linear-gradient(145deg, #ffffff, #dcdcdc);
-      box-shadow:
-        0 4px 10px rgba(0,0,0,0.4),
-        inset 0 2px 4px rgba(255,255,255,0.6);
-      transition: 0.4s;
-    }
-
-    .toggle.active {
-      background: linear-gradient(90deg, #7b2ff7, #c084fc);
-      box-shadow:
-        0 0 20px rgba(168,85,247,0.9),
-        inset 0 0 10px rgba(255,255,255,0.2);
-    }
-
-    .toggle.active::before {
-      left: 30px;
-    }
-
-    /* glow animation */
-    .toggle.active {
-      animation: glow 1.5s infinite alternate;
-    }
-
-    @keyframes glow {
-      from {
-        box-shadow: 0 0 10px #a855f7;
-      }
-      to {
-        box-shadow: 0 0 25px #c084fc;
-      }
-    }
-
-    .toggle:active::before {
-      transform: scale(0.9);
-    }
-
-  </style>
-</head>
-<body>
-
-<div class="container">
-
-  <div class="header">
-    <div class="logo">🎯</div>
-    <h1>Auxilio</h1>
-    <div class="sub">@HOKFFX</div>
-  </div>
-
-  <div class="card">
-    <div class="left">
-      <div class="icon">🎯</div>
-      <div class="text">
-        <div>Aimbot</div>
-        <small>Auto-aim assist</small>
+const ToggleItem = ({ icon, label, sublabel, isOn, onToggle, delay }: ToggleItemProps) => (
+  <motion.div
+    initial={{ opacity: 0, x: -30 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ delay, duration: 0.4, ease: "easeOut" }}
+    className="flex items-center justify-between rounded-2xl bg-card px-5 py-4 border border-border"
+  >
+    <div className="flex items-center gap-4">
+      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-secondary text-primary">
+        {icon}
+      </div>
+      <div>
+        <p className="text-sm font-semibold text-foreground">{label}</p>
+        {sublabel && <p className="text-xs text-muted-foreground">{sublabel}</p>}
       </div>
     </div>
-    <div class="toggle active" onclick="toggle(this)"></div>
-  </div>
+    <button
+      onClick={onToggle}
+      className={`relative h-8 w-14 rounded-full transition-colors duration-300 ${
+        isOn ? "bg-primary shadow-[0_0_16px_hsl(var(--glow-primary)/0.5)]" : "bg-muted"
+      }`}
+    >
+      <motion.div
+        className="absolute top-1 h-6 w-6 rounded-full bg-primary-foreground shadow-md"
+        animate={{ left: isOn ? "calc(100% - 1.75rem)" : "0.25rem" }}
+        transition={{ type: "spring", stiffness: 500, damping: 30 }}
+      />
+    </button>
+  </motion.div>
+);
 
-  <div class="card">
-    <div class="left">
-      <div class="icon">⚡</div>
-      <div class="text">
-        <div>Maintain Headshot</div>
-        <small>Lock to head</small>
-      </div>
-    </div>
-    <div class="toggle" onclick="toggle(this)"></div>
-  </div>
+const ControlPanel = () => {
+  const [toggles, setToggles] = useState({
+    aimbot: true,
+    headshot: true,
+    fps: true,
+    antiLag: true,
+  });
 
-  <div class="card">
-    <div class="left">
-      <div class="icon">📊</div>
-      <div class="text">
-        <div>120 FPS</div>
-        <small>Max frame rate</small>
-      </div>
-    </div>
-    <div class="toggle" onclick="toggle(this)"></div>
-  </div>
+  const toggle = (key: keyof typeof toggles) =>
+    setToggles((prev) => ({ ...prev, [key]: !prev[key] }));
 
-  <div class="card">
-    <div class="left">
-      <div class="icon">📶</div>
-      <div class="text">
-        <div>Anti Lag</div>
-        <small>Network optimizer</small>
-      </div>
-    </div>
-    <div class="toggle" onclick="toggle(this)"></div>
-  </div>
+  return (
+    <div className="flex min-h-screen items-center justify-center bg-background p-4">
+      <motion.div
+        initial={{ opacity: 0, y: 40, scale: 0.95 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className="w-full max-w-sm"
+      >
+        {/* Header */}
+        <div className="mb-6 text-center">
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+            className="mx-auto mb-3 flex h-16 w-16 items-center justify-center rounded-2xl bg-primary shadow-[0_0_40px_hsl(var(--glow-primary)/0.4)]"
+          >
+            <Crosshair className="h-8 w-8 text-primary-foreground" />
+          </motion.div>
+          <h1 className="text-2xl font-bold text-foreground tracking-tight">Auxilio</h1>
+          <p className="text-xs text-muted-foreground mt-1 tracking-widest uppercase">@Hokffx</p>
+        </div>
 
-</div>
+        {/* Controls */}
+        <div className="space-y-3">
+          <ToggleItem
+            icon={<Crosshair className="h-5 w-5" />}
+            label="Aimbot"
+            sublabel="Auto-aim assist"
+            isOn={toggles.aimbot}
+            onToggle={() => toggle("aimbot")}
+            delay={0.3}
+          />
+          <ToggleItem
+            icon={<Zap className="h-5 w-5" />}
+            label="Maintain Headshot"
+            sublabel="Lock to head"
+            isOn={toggles.headshot}
+            onToggle={() => toggle("headshot")}
+            delay={0.4}
+          />
+          <ToggleItem
+            icon={<Gauge className="h-5 w-5" />}
+            label="120 FPS"
+            sublabel="Max frame rate"
+            isOn={toggles.fps}
+            onToggle={() => toggle("fps")}
+            delay={0.5}
+          />
+          <ToggleItem
+            icon={<Wifi className="h-5 w-5" />}
+            label="Anti Lag"
+            sublabel="Network optimizer"
+            isOn={toggles.antiLag}
+            onToggle={() => toggle("antiLag")}
+            delay={0.6}
+          />
+        </div>
 
-<script>
-  function toggle(el) {
-    el.classList.toggle("active");
-  }
-</script>
-
-</body>
-</html>
+        {/* Status bar */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}

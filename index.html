@@ -10,13 +10,12 @@
 
 body{
   font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  background:hsl(260,20%,6%);
-  color:hsl(270,30%,92%);
+  background:#07050f;
+  color:#eee;
   display:flex;
   justify-content:center;
   align-items:center;
   min-height:100vh;
-  padding:16px;
 }
 
 /* KEY SCREEN */
@@ -26,24 +25,24 @@ body{
   text-align:center;
 }
 .logo{width:90px;margin-bottom:20px;}
+
 .key-input{
   width:100%;
   padding:14px;
   border-radius:14px;
   border:none;
-  margin-top:10px;
-  background:hsl(260,25%,10%);
+  background:#141124;
   color:white;
 }
+
 .key-btn{
   width:100%;
   margin-top:14px;
   padding:14px;
   border:none;
   border-radius:14px;
-  background:hsl(270,80%,60%);
+  background:linear-gradient(90deg,#7b3fe4,#a855f7);
   color:white;
-  cursor:pointer;
 }
 
 /* PANEL */
@@ -52,124 +51,114 @@ body{
 
 .icon-box{
   width:64px;height:64px;margin:0 auto 12px;
-  background:hsl(270,80%,60%);
+  background:linear-gradient(145deg,#7b3fe4,#a855f7);
   border-radius:16px;
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 0 40px hsla(270,80%,60%,0.4);
+  box-shadow:0 0 30px rgba(168,85,247,0.5);
 }
 
-.icon-box svg{
-  width:32px;height:32px;
-  stroke:#fff;fill:none;stroke-width:2;
-}
-
-h1{font-size:24px;font-weight:700;}
-.subtitle{
-  font-size:11px;
-  color:hsl(260,15%,55%);
-  letter-spacing:3px;
-  text-transform:uppercase;
-}
+h1{font-size:24px;}
+.subtitle{font-size:11px;color:#aaa;letter-spacing:3px;}
 
 /* CARDS */
-.controls{display:flex;flex-direction:column;gap:12px;}
+.controls{display:flex;flex-direction:column;gap:14px;}
 
 .toggle-row{
   display:flex;
   align-items:center;
   justify-content:space-between;
-  background:hsl(260,25%,10%);
-  border:1px solid hsl(260,25%,18%);
-  border-radius:16px;
-  padding:16px 20px;
+  background:#0f0c1a;
+  border-radius:18px;
+  padding:16px;
+  border:1px solid rgba(255,255,255,0.05);
 }
 
 .toggle-left{
   display:flex;
   align-items:center;
-  gap:16px;
+  gap:14px;
 }
 
 .toggle-icon{
-  width:44px;height:44px;
-  background:hsl(260,30%,16%);
-  border-radius:12px;
+  width:48px;height:48px;
+  border-radius:14px;
+  background:#161225;
   display:flex;align-items:center;justify-content:center;
 }
 
 .toggle-icon svg{
   width:20px;height:20px;
-  stroke:hsl(270,80%,60%);
+  stroke:#a855f7;
   stroke-width:2;
   fill:none;
 }
 
-.toggle-label{font-size:14px;font-weight:600;}
-.toggle-sub{font-size:12px;color:hsl(260,15%,55%);}
+.toggle-label{font-weight:600;}
+.toggle-sub{font-size:12px;color:#888;}
 
-/* SWITCH ANIMATION */
+/* SWITCH */
 .switch{
-  width:56px;
-  height:32px;
-  border-radius:16px;
-  border:none;
-  cursor:pointer;
-  position:relative;
+  width:54px;height:30px;
+  border-radius:15px;
   background:linear-gradient(90deg,#7b3fe4,#a855f7);
-  box-shadow:0 0 12px rgba(168,85,247,0.6);
-  transition:all 0.3s ease;
+  position:relative;
+  cursor:pointer;
+  border:none;
 }
 
 .switch.off{
-  background:#1c1a2b;
-  box-shadow:none;
+  background:#2a2a2a;
 }
 
 .switch-knob{
   position:absolute;
-  top:4px;
-  left:28px;
-  width:24px;
-  height:24px;
-  background:#fff;
+  top:3px;
+  left:26px;
+  width:24px;height:24px;
+  background:white;
   border-radius:50%;
-  transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  transition:0.3s;
 }
 
 .switch.off .switch-knob{
-  left:4px;
+  left:3px;
 }
 
-.switch:active{
-  transform:scale(0.95);
+/* ACTIVATE BUTTON */
+.activate-btn{
+  width:100%;
+  margin-top:20px;
+  padding:16px;
+  border:none;
+  border-radius:20px;
+  font-size:16px;
+  font-weight:600;
+  color:white;
+  background:linear-gradient(90deg,#7b3fe4,#a855f7);
+  box-shadow:0 0 20px rgba(168,85,247,0.6);
+  opacity:0.5;
 }
 
-.switch:not(.off){
-  animation:glowPulse 1.5s infinite alternate;
-}
-
-@keyframes glowPulse{
-  0%{box-shadow:0 0 8px rgba(168,85,247,0.5);}
-  100%{box-shadow:0 0 20px rgba(168,85,247,0.9);}
+.activate-btn.enabled{
+  opacity:1;
 }
 
 /* STATUS */
 .status{
   text-align:center;
-  margin-top:24px;
+  margin-top:20px;
   font-size:12px;
-  color:hsl(260,15%,55%);
+  color:#888;
 }
 </style>
 </head>
 
 <body>
 
-<!-- KEY SCREEN -->
+<!-- KEY -->
 <div class="key-screen" id="keyScreen">
   <img src="logo.png" class="logo">
   <h2>Enter Key</h2>
-
   <input type="text" id="keyInput" class="key-input" placeholder="Enter key...">
   <button class="key-btn" onclick="checkKey()">Unlock</button>
 </div>
@@ -177,25 +166,16 @@ h1{font-size:24px;font-weight:700;}
 <!-- PANEL -->
 <div class="panel" id="panel">
   <div class="header">
-    <div class="icon-box">
-      <svg viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="6"/>
-      </svg>
-    </div>
+    <div class="icon-box"></div>
     <h1>Auxilio</h1>
-    <p class="subtitle">@Hokffx</p>
+    <p class="subtitle">@HOKFFX</p>
   </div>
 
   <div class="controls">
 
-    <!-- Aimbot -->
     <div class="toggle-row">
       <div class="toggle-left">
-        <div class="toggle-icon">
-          <svg viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="6"/>
-          </svg>
-        </div>
+        <div class="toggle-icon"></div>
         <div>
           <div class="toggle-label">Aimbot</div>
           <div class="toggle-sub">Auto-aim assist</div>
@@ -206,14 +186,9 @@ h1{font-size:24px;font-weight:700;}
       </button>
     </div>
 
-    <!-- Headshot -->
     <div class="toggle-row">
       <div class="toggle-left">
-        <div class="toggle-icon">
-          <svg viewBox="0 0 24 24">
-            <path d="M7 17 L13 7 L13 17 Z"/>
-          </svg>
-        </div>
+        <div class="toggle-icon"></div>
         <div>
           <div class="toggle-label">Maintain Headshot</div>
           <div class="toggle-sub">Lock to head</div>
@@ -224,14 +199,9 @@ h1{font-size:24px;font-weight:700;}
       </button>
     </div>
 
-    <!-- FPS -->
     <div class="toggle-row">
       <div class="toggle-left">
-        <div class="toggle-icon">
-          <svg viewBox="0 0 24 24">
-            <path d="M12 7v5l3 2"/>
-          </svg>
-        </div>
+        <div class="toggle-icon"></div>
         <div>
           <div class="toggle-label">120 FPS</div>
           <div class="toggle-sub">Max frame rate</div>
@@ -242,14 +212,9 @@ h1{font-size:24px;font-weight:700;}
       </button>
     </div>
 
-    <!-- Anti Lag -->
     <div class="toggle-row">
       <div class="toggle-left">
-        <div class="toggle-icon">
-          <svg viewBox="0 0 24 24">
-            <path d="M6 15c3-3 9-3 12 0"/>
-          </svg>
-        </div>
+        <div class="toggle-icon"></div>
         <div>
           <div class="toggle-label">Anti Lag</div>
           <div class="toggle-sub">Network optimizer</div>
@@ -262,6 +227,9 @@ h1{font-size:24px;font-weight:700;}
 
   </div>
 
+  <!-- ACTIVATE BUTTON -->
+  <button class="activate-btn" id="activateBtn" onclick="activateApp()">ACTIVATE</button>
+
   <div class="status">All systems active</div>
 </div>
 
@@ -269,8 +237,8 @@ h1{font-size:24px;font-weight:700;}
 function checkKey(){
   let key=document.getElementById("keyInput").value;
   if(key==="Hokffx24266"){
-    document.getElementById("keyScreen").style.display="none";
-    document.getElementById("panel").style.display="block";
+    keyScreen.style.display="none";
+    panel.style.display="block";
   } else {
     alert("Invalid Key");
   }
@@ -278,6 +246,36 @@ function checkKey(){
 
 function tog(btn){
   btn.classList.toggle("off");
+  checkAll();
+}
+
+function checkAll(){
+  let switches=document.querySelectorAll(".switch");
+  let allOn=true;
+
+  switches.forEach(sw=>{
+    if(sw.classList.contains("off")) allOn=false;
+  });
+
+  let btn=document.getElementById("activateBtn");
+
+  if(allOn){
+    btn.classList.add("enabled");
+  }else{
+    btn.classList.remove("enabled");
+  }
+}
+
+function activateApp(){
+  let btn=document.getElementById("activateBtn");
+
+  if(!btn.classList.contains("enabled")){
+    alert("Enable all features first");
+    return;
+  }
+
+  // SAFE REDIRECT (change link)
+  window.location.href="https://example.com";
 }
 </script>
 

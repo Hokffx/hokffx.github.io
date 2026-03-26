@@ -1,257 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Auxilio - @Hokffx</title>
+<title>Auxilio</title><style>
+*{margin:0;padding:0;box-sizing:border-box;}
 
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background: hsl(260, 20%, 6%);
-  color: hsl(270, 30%, 92%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  background:#07060d;
+  color:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
 }
 
-/* 🔐 LOGIN SCREEN */
-.login-box {
-  width: 100%;
-  max-width: 320px;
-  text-align: center;
+/* LOGIN */
+.login-box{
+  width:90%;
+  max-width:350px;
+  text-align:center;
 }
-
-.login-box input {
-  width: 100%;
-  padding: 14px;
-  margin-top: 12px;
-  border-radius: 12px;
-  border: none;
-  outline: none;
-  background: hsl(260, 25%, 12%);
-  color: #fff;
-}
-
-.login-box button {
-  width: 100%;
-  margin-top: 12px;
-  padding: 14px;
-  border-radius: 12px;
-  border: none;
-  background: hsl(270, 80%, 60%);
-  color: #fff;
-  cursor: pointer;
-}
-
-.error {
-  color: #ef4444;
-  font-size: 12px;
-  margin-top: 10px;
-  display: none;
-}
-
-/* 🟣 MAIN PANEL */
-.panel {
-  width: 100%;
-  max-width: 380px;
-  display: none;
-  animation: fade 0.5s ease;
-}
-
-@keyframes fade {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.header { text-align: center; margin-bottom: 24px; }
 
 /* PROFILE IMAGE */
-.profile {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  margin: 0 auto 12px;
-  overflow: hidden;
-  border: 2px solid hsl(270, 80%, 60%);
-  box-shadow: 0 0 20px hsla(270, 80%, 60%, 0.4);
+.login-profile{
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  overflow:hidden;
+  margin:0 auto 15px;
 }
 
-.profile img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.login-profile img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
 }
 
-h1 { font-size: 24px; font-weight: 700; }
-.subtitle {
-  font-size: 11px;
-  color: hsl(260, 15%, 55%);
-  letter-spacing: 3px;
-  text-transform: uppercase;
+/* TEXT */
+h2{
+  font-size:28px;
+  margin-bottom:20px;
 }
 
-.controls { display: flex; flex-direction: column; gap: 12px; }
-
-.toggle-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: hsl(260, 25%, 10%);
-  border: 1px solid hsl(260, 25%, 18%);
-  border-radius: 16px;
-  padding: 16px 20px;
+/* INPUT */
+input{
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:20px;
+  background:#1a1725;
+  color:#fff;
+  margin-bottom:15px;
 }
 
-.toggle-left { display: flex; align-items: center; gap: 16px; }
-
-.toggle-icon {
-  width: 44px;
-  height: 44px;
-  background: hsl(260, 30%, 16%);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* BUTTON */
+button{
+  width:100%;
+  padding:16px;
+  border:none;
+  border-radius:20px;
+  background:linear-gradient(90deg,#7c3aed,#9333ea);
+  color:#fff;
+  font-size:16px;
 }
 
-.toggle-icon svg {
-  width: 20px;
-  height: 20px;
-  stroke: hsl(270, 80%, 60%);
-  fill: none;
-  stroke-width: 2;
+/* ERROR */
+.error{
+  color:#ff4d4d;
+  font-size:13px;
+  margin-top:10px;
+  display:none;
 }
+</style></head><body><div class="login-box">  <!-- PROFILE IMAGE -->  <div class="login-profile">
+    <img src="profile.png">
+    <!-- OR use this if using Drive -->
+    <!-- <img src="https://drive.google.com/uc?export=view&id=18yZzCy1b_NqRhszfhRYfR6VyiuWBAQDO"> -->
+  </div>  <h2>Enter Key</h2>  <input type="password" id="key" placeholder="Enter key...">
+  <button onclick="checkKey()">Unlock</button>  <div class="error" id="error">❌ Wrong password</div></div><script>
+function checkKey(){
+  let key=document.getElementById("key").value;
 
-.toggle-label { font-size: 14px; font-weight: 600; }
-.toggle-sub { font-size: 12px; color: hsl(260, 15%, 55%); }
-
-.switch {
-  width: 56px;
-  height: 32px;
-  border-radius: 16px;
-  border: none;
-  cursor: pointer;
-  position: relative;
-  background: hsl(270, 80%, 60%);
-}
-
-.switch.off { background: hsl(260, 20%, 14%); }
-
-.switch-knob {
-  position: absolute;
-  top: 4px;
-  width: 24px;
-  height: 24px;
-  background: #fff;
-  border-radius: 50%;
-  left: 28px;
-  transition: 0.3s;
-}
-
-.switch.off .switch-knob { left: 4px; }
-
-.status {
-  text-align: center;
-  margin-top: 24px;
-  font-size: 12px;
-  color: hsl(260, 15%, 55%);
-}
-
-.status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #22c55e;
-  display: inline-block;
-  margin-right: 6px;
-}
-</style>
-</head>
-
-<body>
-
-<!-- 🔐 LOGIN -->
-<div class="login-box">
-  <h2>Enter Key</h2>
-  <input type="password" id="key" placeholder="Enter key...">
-  <button onclick="checkKey()">Unlock</button>
-  <div class="error" id="error">❌ Wrong password</div>
-</div>
-
-<!-- 🟣 MAIN PANEL -->
-<div class="panel" id="panel">
-  <div class="header">
-
-    <!-- PROFILE IMAGE -->
-    <div class="profile">
-      <img src="your-image.png" alt="profile">
-    </div>
-
-    <h1>Auxilio</h1>
-    <p class="subtitle">@Hokffx</p>
-  </div>
-
-  <div class="controls">
-
-    <!-- SAME TOGGLES -->
-    <div class="toggle-row">
-      <div class="toggle-left">
-        <div class="toggle-icon">⚙️</div>
-        <div><div class="toggle-label">Aimbot</div><div class="toggle-sub">Auto-aim assist</div></div>
-      </div>
-      <button class="switch" onclick="tog(this)"><div class="switch-knob"></div></button>
-    </div>
-
-    <div class="toggle-row">
-      <div class="toggle-left">
-        <div class="toggle-icon">⚡</div>
-        <div><div class="toggle-label">Maintain Headshot</div><div class="toggle-sub">Lock to head</div></div>
-      </div>
-      <button class="switch" onclick="tog(this)"><div class="switch-knob"></div></button>
-    </div>
-
-    <div class="toggle-row">
-      <div class="toggle-left">
-        <div class="toggle-icon">⏱️</div>
-        <div><div class="toggle-label">120 FPS</div><div class="toggle-sub">Max frame rate</div></div>
-      </div>
-      <button class="switch" onclick="tog(this)"><div class="switch-knob"></div></button>
-    </div>
-
-    <div class="toggle-row">
-      <div class="toggle-left">
-        <div class="toggle-icon">📶</div>
-        <div><div class="toggle-label">Anti Lag</div><div class="toggle-sub">Network optimizer</div></div>
-      </div>
-      <button class="switch" onclick="tog(this)"><div class="switch-knob"></div></button>
-    </div>
-
-  </div>
-
-  <div class="status">
-    <span class="status-dot"></span>All systems active
-  </div>
-</div>
-
-<script>
-function tog(btn) {
-  btn.classList.toggle('off');
-}
-
-function checkKey() {
-  const key = document.getElementById('key').value;
-  if (key === "Hokffx24266") {
-    document.querySelector('.login-box').style.display = "none";
-    document.getElementById('panel').style.display = "block";
-  } else {
-    document.getElementById('error').style.display = "block";
+  if(key==="Hokffx24266"){
+    alert("Access Granted ✅");
+  }else{
+    document.getElementById("error").style.display="block";
   }
 }
-</script>
-
-</body>
+</script></body>
 </html>

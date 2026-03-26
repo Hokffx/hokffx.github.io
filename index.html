@@ -18,7 +18,7 @@ body{
   min-height:100vh;
 }
 
-/* KEY SCREEN */
+/* KEY */
 .key-screen{
   width:100%;
   max-width:380px;
@@ -53,24 +53,21 @@ body{
   width:64px;height:64px;margin:0 auto 12px;
   background:linear-gradient(145deg,#7b3fe4,#a855f7);
   border-radius:16px;
-  display:flex;align-items:center;justify-content:center;
   box-shadow:0 0 30px rgba(168,85,247,0.5);
 }
 
 h1{font-size:24px;}
 .subtitle{font-size:11px;color:#aaa;letter-spacing:3px;}
 
-/* CARDS */
 .controls{display:flex;flex-direction:column;gap:14px;}
 
 .toggle-row{
   display:flex;
-  align-items:center;
   justify-content:space-between;
+  align-items:center;
   background:#0f0c1a;
   border-radius:18px;
   padding:16px;
-  border:1px solid rgba(255,255,255,0.05);
 }
 
 .toggle-left{
@@ -83,14 +80,20 @@ h1{font-size:24px;}
   width:48px;height:48px;
   border-radius:14px;
   background:#161225;
-  display:flex;align-items:center;justify-content:center;
+  display:flex;
+  justify-content:center;
+  align-items:center;
 }
 
+/* FIXED ICONS */
 .toggle-icon svg{
-  width:20px;height:20px;
+  width:22px;height:22px;
   stroke:#a855f7;
-  stroke-width:2;
+  stroke-width:2.2;
   fill:none;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  filter:drop-shadow(0 0 6px rgba(168,85,247,0.8));
 }
 
 .toggle-label{font-weight:600;}
@@ -103,12 +106,9 @@ h1{font-size:24px;}
   background:linear-gradient(90deg,#7b3fe4,#a855f7);
   position:relative;
   cursor:pointer;
-  border:none;
 }
 
-.switch.off{
-  background:#2a2a2a;
-}
+.switch.off{background:#2a2a2a;}
 
 .switch-knob{
   position:absolute;
@@ -120,11 +120,9 @@ h1{font-size:24px;}
   transition:0.3s;
 }
 
-.switch.off .switch-knob{
-  left:3px;
-}
+.switch.off .switch-knob{left:3px;}
 
-/* ACTIVATE BUTTON */
+/* ACTIVATE */
 .activate-btn{
   width:100%;
   margin-top:20px;
@@ -137,16 +135,21 @@ h1{font-size:24px;}
   background:linear-gradient(90deg,#7b3fe4,#a855f7);
   box-shadow:0 0 20px rgba(168,85,247,0.6);
   opacity:0.5;
+  transition:0.3s;
 }
 
 .activate-btn.enabled{
   opacity:1;
+  transform:scale(1.02);
 }
 
-/* STATUS */
+.activate-btn:active{
+  transform:scale(0.95);
+}
+
 .status{
   text-align:center;
-  margin-top:20px;
+  margin-top:15px;
   font-size:12px;
   color:#888;
 }
@@ -155,16 +158,15 @@ h1{font-size:24px;}
 
 <body>
 
-<!-- KEY -->
 <div class="key-screen" id="keyScreen">
   <img src="logo.png" class="logo">
   <h2>Enter Key</h2>
-  <input type="text" id="keyInput" class="key-input" placeholder="Enter key...">
+  <input id="keyInput" class="key-input" placeholder="Enter key...">
   <button class="key-btn" onclick="checkKey()">Unlock</button>
 </div>
 
-<!-- PANEL -->
 <div class="panel" id="panel">
+
   <div class="header">
     <div class="icon-box"></div>
     <h1>Auxilio</h1>
@@ -173,73 +175,98 @@ h1{font-size:24px;}
 
   <div class="controls">
 
+    <!-- AIMBOT -->
     <div class="toggle-row">
       <div class="toggle-left">
-        <div class="toggle-icon"></div>
+        <div class="toggle-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="6"/>
+            <line x1="12" y1="3" x2="12" y2="6"/>
+            <line x1="12" y1="18" x2="12" y2="21"/>
+            <line x1="3" y1="12" x2="6" y2="12"/>
+            <line x1="18" y1="12" x2="21" y2="12"/>
+          </svg>
+        </div>
         <div>
           <div class="toggle-label">Aimbot</div>
           <div class="toggle-sub">Auto-aim assist</div>
         </div>
       </div>
-      <button class="switch" onclick="tog(this)">
+      <div class="switch" onclick="tog(this)">
         <div class="switch-knob"></div>
-      </button>
+      </div>
     </div>
 
+    <!-- HEADSHOT -->
     <div class="toggle-row">
       <div class="toggle-left">
-        <div class="toggle-icon"></div>
+        <div class="toggle-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M13 3 L6 14 H11 L10 21 L18 10 H13 Z"/>
+          </svg>
+        </div>
         <div>
           <div class="toggle-label">Maintain Headshot</div>
           <div class="toggle-sub">Lock to head</div>
         </div>
       </div>
-      <button class="switch" onclick="tog(this)">
+      <div class="switch" onclick="tog(this)">
         <div class="switch-knob"></div>
-      </button>
+      </div>
     </div>
 
+    <!-- FPS -->
     <div class="toggle-row">
       <div class="toggle-left">
-        <div class="toggle-icon"></div>
+        <div class="toggle-icon">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="8"/>
+            <path d="M12 8 V12 L15 14"/>
+          </svg>
+        </div>
         <div>
           <div class="toggle-label">120 FPS</div>
           <div class="toggle-sub">Max frame rate</div>
         </div>
       </div>
-      <button class="switch" onclick="tog(this)">
+      <div class="switch" onclick="tog(this)">
         <div class="switch-knob"></div>
-      </button>
+      </div>
     </div>
 
+    <!-- ANTILAG -->
     <div class="toggle-row">
       <div class="toggle-left">
-        <div class="toggle-icon"></div>
+        <div class="toggle-icon">
+          <svg viewBox="0 0 24 24">
+            <path d="M4 10 C9 6, 15 6, 20 10"/>
+            <path d="M6 14 C10 11, 14 11, 18 14"/>
+            <circle cx="12" cy="18" r="1.5"/>
+          </svg>
+        </div>
         <div>
           <div class="toggle-label">Anti Lag</div>
           <div class="toggle-sub">Network optimizer</div>
         </div>
       </div>
-      <button class="switch" onclick="tog(this)">
+      <div class="switch" onclick="tog(this)">
         <div class="switch-knob"></div>
-      </button>
+      </div>
     </div>
 
   </div>
 
-  <!-- ACTIVATE BUTTON -->
-  <button class="activate-btn" id="activateBtn" onclick="activateApp()">ACTIVATE</button>
-
+  <button id="activateBtn" class="activate-btn" onclick="activateApp()">ACTIVATE</button>
   <div class="status">All systems active</div>
+
 </div>
 
 <script>
 function checkKey(){
-  let key=document.getElementById("keyInput").value;
-  if(key==="Hokffx24266"){
+  if(document.getElementById("keyInput").value==="Hokffx24266"){
     keyScreen.style.display="none";
     panel.style.display="block";
-  } else {
+  }else{
     alert("Invalid Key");
   }
 }
@@ -250,20 +277,14 @@ function tog(btn){
 }
 
 function checkAll(){
-  let switches=document.querySelectorAll(".switch");
   let allOn=true;
-
-  switches.forEach(sw=>{
+  document.querySelectorAll(".switch").forEach(sw=>{
     if(sw.classList.contains("off")) allOn=false;
   });
 
   let btn=document.getElementById("activateBtn");
-
-  if(allOn){
-    btn.classList.add("enabled");
-  }else{
-    btn.classList.remove("enabled");
-  }
+  if(allOn) btn.classList.add("enabled");
+  else btn.classList.remove("enabled");
 }
 
 function activateApp(){
@@ -274,8 +295,8 @@ function activateApp(){
     return;
   }
 
-  // SAFE REDIRECT (change link)
-  window.location.href="https://example.com";
+  // SAFE redirect (Play Store)
+  window.location.href="https://play.google.com/store/apps/details?id=com.dts.freefireth";
 }
 </script>
 

@@ -2,87 +2,168 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Auxilio</title><style>
-*{margin:0;padding:0;box-sizing:border-box;}
+<title>Auxilio - @Hokffx</title><style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-body{
-  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  background:#07060d;
-  color:#fff;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  height:100vh;
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: hsl(260, 20%, 6%);
+  color: hsl(270, 30%, 92%);
+  display: flex; justify-content: center; align-items: center;
+  min-height: 100vh; padding: 16px;
 }
 
-/* LOGIN */
-.login-box{
-  width:90%;
-  max-width:350px;
-  text-align:center;
+/* 🔐 LOGIN */
+.login-box {
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
 }
 
-/* PROFILE IMAGE */
-.login-profile{
-  width:100px;
-  height:100px;
-  border-radius:50%;
-  overflow:hidden;
-  margin:0 auto 15px;
+.login-profile {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 14px;
 }
 
-.login-profile img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+.login-profile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* TEXT */
-h2{
-  font-size:28px;
-  margin-bottom:20px;
+.login-box input {
+  width: 100%;
+  padding: 16px;
+  border-radius: 16px;
+  border: none;
+  background: hsl(260, 25%, 12%);
+  color: #fff;
+  margin-top: 10px;
 }
 
-/* INPUT */
-input{
-  width:100%;
-  padding:16px;
-  border:none;
-  border-radius:20px;
-  background:#1a1725;
-  color:#fff;
-  margin-bottom:15px;
+.login-box button {
+  width: 100%;
+  margin-top: 12px;
+  padding: 16px;
+  border-radius: 16px;
+  border: none;
+  background: linear-gradient(90deg,#7c3aed,#9333ea);
+  color: #fff;
 }
 
-/* BUTTON */
-button{
-  width:100%;
-  padding:16px;
-  border:none;
-  border-radius:20px;
-  background:linear-gradient(90deg,#7c3aed,#9333ea);
-  color:#fff;
-  font-size:16px;
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 10px;
+  display: none;
 }
 
-/* ERROR */
-.error{
-  color:#ff4d4d;
-  font-size:13px;
-  margin-top:10px;
-  display:none;
+/* 🟣 PANEL (your original UI) */
+.panel { width: 100%; max-width: 380px; display:none; }
+.header { text-align: center; margin-bottom: 24px; }
+.icon-box {
+  width: 64px; height: 64px; margin: 0 auto 12px;
+  background: hsl(270, 80%, 60%);
+  border-radius: 16px; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 40px hsla(270, 80%, 60%, 0.4);
 }
-</style></head><body><div class="login-box">  <!-- PROFILE IMAGE -->  <div class="login-profile">
+.icon-box svg { width: 32px; height: 32px; stroke: #fff; fill: none; stroke-width: 2; }
+h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
+.subtitle { font-size: 11px; color: hsl(260, 15%, 55%); letter-spacing: 3px; text-transform: uppercase; margin-top: 4px; }
+.controls { display: flex; flex-direction: column; gap: 12px; }
+.toggle-row {
+  display: flex; align-items: center; justify-content: space-between;
+  background: hsl(260, 25%, 10%); border: 1px solid hsl(260, 25%, 18%);
+  border-radius: 16px; padding: 16px 20px;
+}
+.toggle-left { display: flex; align-items: center; gap: 16px; }
+.toggle-icon {
+  width: 44px; height: 44px; background: hsl(260, 30%, 16%);
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+}
+.toggle-icon svg { width: 20px; height: 20px; stroke: hsl(270, 80%, 60%); fill: none; stroke-width: 2; }
+.toggle-label { font-size: 14px; font-weight: 600; }
+.toggle-sub { font-size: 12px; color: hsl(260, 15%, 55%); }
+.switch {
+  width: 56px; height: 32px; border-radius: 16px; border: none; cursor: pointer;
+  position: relative; transition: background 0.3s;
+  background: hsl(270, 80%, 60%); box-shadow: 0 0 16px hsla(270, 80%, 60%, 0.5);
+}
+.switch.off { background: hsl(260, 20%, 14%); box-shadow: none; }
+.switch-knob {
+  position: absolute; top: 4px; width: 24px; height: 24px;
+  background: #fff; border-radius: 50%;
+  transition: left 0.3s;
+  left: 28px;
+}
+.switch.off .switch-knob { left: 4px; }
+.status {
+  text-align: center; margin-top: 24px; font-size: 12px;
+  color: hsl(260, 15%, 55%);
+}
+.status-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #22c55e;
+  display: inline-block;
+  margin-right: 6px;
+}
+</style></head><body><!-- 🔐 LOGIN SCREEN --><div class="login-box">  <!-- PROFILE IMAGE -->  <div class="login-profile">
     <img src="profile.png">
-    <!-- OR use this if using Drive -->
-    <!-- <img src="https://drive.google.com/uc?export=view&id=18yZzCy1b_NqRhszfhRYfR6VyiuWBAQDO"> -->
   </div>  <h2>Enter Key</h2>  <input type="password" id="key" placeholder="Enter key...">
-  <button onclick="checkKey()">Unlock</button>  <div class="error" id="error">❌ Wrong password</div></div><script>
+  <button onclick="checkKey()">Unlock</button>
+  <div class="error" id="error">❌ Wrong password</div>
+</div><!-- 🟣 ORIGINAL PANEL --><div class="panel" id="panel">
+  <div class="header">
+    <div class="icon-box">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
+    </div>
+    <h1>Auxilio</h1>
+    <p class="subtitle">@Hokffx</p>
+  </div>  <div class="controls">
+    <!-- SAME CONTENT (unchanged) -->
+    <div class="toggle-row">
+      <div class="toggle-left">
+        <div class="toggle-icon"></div>
+        <div><div class="toggle-label">Aimbot</div><div class="toggle-sub">Auto-aim assist</div></div>
+      </div>
+      <button class="switch" onclick="tog(this)"><div class="switch-knob"></div></button>
+    </div><div class="toggle-row">
+  <div class="toggle-left">
+    <div class="toggle-icon"></div>
+    <div><div class="toggle-label">Maintain Headshot</div><div class="toggle-sub">Lock to head</div></div>
+  </div>
+  <button class="switch" onclick="tog(this)"><div class="switch-knob"></div></button>
+</div>
+
+<div class="toggle-row">
+  <div class="toggle-left">
+    <div class="toggle-icon"></div>
+    <div><div class="toggle-label">120 FPS</div><div class="toggle-sub">Max frame rate</div></div>
+  </div>
+  <button class="switch" onclick="tog(this)"><div class="switch-knob"></div></button>
+</div>
+
+<div class="toggle-row">
+  <div class="toggle-left">
+    <div class="toggle-icon"></div>
+    <div><div class="toggle-label">Anti Lag</div><div class="toggle-sub">Network optimizer</div></div>
+  </div>
+  <button class="switch" onclick="tog(this)"><div class="switch-knob"></div></button>
+</div>
+
+  </div>  <div class="status"><span class="status-dot"></span>All systems active</div>
+</div><script>
+function tog(btn){ btn.classList.toggle('off'); }
+
 function checkKey(){
   let key=document.getElementById("key").value;
 
   if(key==="Hokffx24266"){
-    alert("Access Granted ✅");
+    document.querySelector(".login-box").style.display="none";
+    document.getElementById("panel").style.display="block";
   }else{
     document.getElementById("error").style.display="block";
   }

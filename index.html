@@ -10,154 +10,185 @@
 
 body{
   font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  background:#07050f;
-  color:#eee;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  min-height:100vh;
+  background:hsl(260,20%,6%);
+  color:hsl(270,30%,92%);
+  display:flex;justify-content:center;align-items:center;
+  min-height:100vh;padding:16px;
 }
 
-/* KEY */
+/* KEY SCREEN */
 .key-screen{
   width:100%;
   max-width:380px;
   text-align:center;
 }
-.logo{width:90px;margin-bottom:20px;}
-
+.logo{
+  width:70px;
+  margin-bottom:16px;
+}
 .key-input{
   width:100%;
   padding:14px;
   border-radius:14px;
   border:none;
-  background:#141124;
+  background:hsl(260,25%,12%);
   color:white;
 }
-
 .key-btn{
   width:100%;
-  margin-top:14px;
+  margin-top:12px;
   padding:14px;
   border:none;
   border-radius:14px;
-  background:linear-gradient(90deg,#7b3fe4,#a855f7);
+  background:hsl(270,80%,60%);
   color:white;
 }
 
 /* PANEL */
 .panel{display:none;width:100%;max-width:380px;}
+
 .header{text-align:center;margin-bottom:24px;}
 
 .icon-box{
   width:64px;height:64px;margin:0 auto 12px;
-  background:linear-gradient(145deg,#7b3fe4,#a855f7);
+  background:hsl(270,80%,60%);
   border-radius:16px;
-  box-shadow:0 0 30px rgba(168,85,247,0.5);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 40px hsla(270,80%,60%,0.4);
 }
 
-h1{font-size:24px;}
-.subtitle{font-size:11px;color:#aaa;letter-spacing:3px;}
+.icon-box svg{
+  width:32px;height:32px;
+  stroke:#fff;
+  fill:none;
+  stroke-width:2;
+}
 
-.controls{display:flex;flex-direction:column;gap:14px;}
+h1{font-size:24px;font-weight:700;}
+.subtitle{
+  font-size:11px;
+  color:hsl(260,15%,55%);
+  letter-spacing:3px;
+  text-transform:uppercase;
+}
+
+.controls{display:flex;flex-direction:column;gap:12px;}
 
 .toggle-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:#0f0c1a;
-  border-radius:18px;
-  padding:16px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:hsl(260,25%,10%);
+  border:1px solid hsl(260,25%,18%);
+  border-radius:16px;
+  padding:16px 20px;
 }
 
-.toggle-left{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
+.toggle-left{display:flex;align-items:center;gap:16px;}
 
 .toggle-icon{
-  width:48px;height:48px;
-  border-radius:14px;
-  background:#161225;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  width:44px;height:44px;
+  background:hsl(260,30%,16%);
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
 }
 
-/* FIXED ICONS */
 .toggle-icon svg{
-  width:22px;height:22px;
-  stroke:#a855f7;
-  stroke-width:2.2;
+  width:20px;height:20px;
+  stroke:hsl(270,80%,60%);
   fill:none;
+  stroke-width:2;
   stroke-linecap:round;
   stroke-linejoin:round;
-  filter:drop-shadow(0 0 6px rgba(168,85,247,0.8));
 }
 
-.toggle-label{font-weight:600;}
-.toggle-sub{font-size:12px;color:#888;}
+.toggle-label{font-size:14px;font-weight:600;}
+.toggle-sub{font-size:12px;color:hsl(260,15%,55%);}
 
 /* SWITCH */
 .switch{
-  width:54px;height:30px;
-  border-radius:15px;
-  background:linear-gradient(90deg,#7b3fe4,#a855f7);
-  position:relative;
+  width:56px;height:32px;
+  border-radius:16px;
+  border:none;
   cursor:pointer;
+  position:relative;
+  background:hsl(260,20%,14%);
 }
-
-.switch.off{background:#2a2a2a;}
 
 .switch-knob{
   position:absolute;
-  top:3px;
-  left:26px;
+  top:4px;
+  left:4px;
   width:24px;height:24px;
-  background:white;
+  background:#fff;
   border-radius:50%;
   transition:0.3s;
 }
 
-.switch.off .switch-knob{left:3px;}
+.switch.active{
+  background:hsl(270,80%,60%);
+  box-shadow:0 0 16px hsla(270,80%,60%,0.5);
+}
 
-/* ACTIVATE */
+.switch.active .switch-knob{
+  left:28px;
+}
+
+/* ACTIVATE BUTTON */
 .activate-btn{
   width:100%;
   margin-top:20px;
   padding:16px;
   border:none;
-  border-radius:20px;
-  font-size:16px;
-  font-weight:600;
+  border-radius:16px;
+  background:hsl(270,80%,60%);
   color:white;
-  background:linear-gradient(90deg,#7b3fe4,#a855f7);
-  box-shadow:0 0 20px rgba(168,85,247,0.6);
-  opacity:0.5;
-  transition:0.3s;
+  font-weight:600;
+  font-size:16px;
+  box-shadow:0 0 20px hsla(270,80%,60%,0.5);
 }
 
-.activate-btn.enabled{
-  opacity:1;
-  transform:scale(1.02);
-}
-
-.activate-btn:active{
-  transform:scale(0.95);
-}
-
+/* STATUS */
 .status{
   text-align:center;
-  margin-top:15px;
+  margin-top:16px;
   font-size:12px;
-  color:#888;
+  color:hsl(260,15%,55%);
+}
+
+/* LOADING SCREEN */
+.loading-screen{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:hsl(260,20%,6%);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  z-index:999;
+}
+
+.loader{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  border:4px solid rgba(168,85,247,0.2);
+  border-top:4px solid #a855f7;
+  animation:spin 1s linear infinite;
+  margin-bottom:20px;
+}
+
+@keyframes spin{
+  0%{transform:rotate(0deg);}
+  100%{transform:rotate(360deg);}
 }
 </style>
 </head>
 
 <body>
 
+<!-- KEY SCREEN -->
 <div class="key-screen" id="keyScreen">
   <img src="logo.png" class="logo">
   <h2>Enter Key</h2>
@@ -165,26 +196,35 @@ h1{font-size:24px;}
   <button class="key-btn" onclick="checkKey()">Unlock</button>
 </div>
 
+<!-- PANEL -->
 <div class="panel" id="panel">
 
   <div class="header">
-    <div class="icon-box"></div>
+    <div class="icon-box">
+      <svg viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="10"/>
+        <line x1="22" y1="12" x2="18" y2="12"/>
+        <line x1="6" y1="12" x2="2" y2="12"/>
+        <line x1="12" y1="6" x2="12" y2="2"/>
+        <line x1="12" y1="22" x2="12" y2="18"/>
+      </svg>
+    </div>
     <h1>Auxilio</h1>
     <p class="subtitle">@HOKFFX</p>
   </div>
 
   <div class="controls">
 
-    <!-- AIMBOT -->
+    <!-- Aimbot -->
     <div class="toggle-row">
       <div class="toggle-left">
         <div class="toggle-icon">
           <svg viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="6"/>
-            <line x1="12" y1="3" x2="12" y2="6"/>
-            <line x1="12" y1="18" x2="12" y2="21"/>
-            <line x1="3" y1="12" x2="6" y2="12"/>
-            <line x1="18" y1="12" x2="21" y2="12"/>
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="22" y1="12" x2="18" y2="12"/>
+            <line x1="6" y1="12" x2="2" y2="12"/>
+            <line x1="12" y1="6" x2="12" y2="2"/>
+            <line x1="12" y1="22" x2="12" y2="18"/>
           </svg>
         </div>
         <div>
@@ -192,17 +232,17 @@ h1{font-size:24px;}
           <div class="toggle-sub">Auto-aim assist</div>
         </div>
       </div>
-      <div class="switch" onclick="tog(this)">
+      <button class="switch" onclick="tog(this)">
         <div class="switch-knob"></div>
-      </div>
+      </button>
     </div>
 
-    <!-- HEADSHOT -->
+    <!-- Headshot -->
     <div class="toggle-row">
       <div class="toggle-left">
         <div class="toggle-icon">
           <svg viewBox="0 0 24 24">
-            <path d="M13 3 L6 14 H11 L10 21 L18 10 H13 Z"/>
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
           </svg>
         </div>
         <div>
@@ -210,9 +250,9 @@ h1{font-size:24px;}
           <div class="toggle-sub">Lock to head</div>
         </div>
       </div>
-      <div class="switch" onclick="tog(this)">
+      <button class="switch" onclick="tog(this)">
         <div class="switch-knob"></div>
-      </div>
+      </button>
     </div>
 
     <!-- FPS -->
@@ -220,8 +260,8 @@ h1{font-size:24px;}
       <div class="toggle-left">
         <div class="toggle-icon">
           <svg viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="8"/>
-            <path d="M12 8 V12 L15 14"/>
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M12 6v6l4 2"/>
           </svg>
         </div>
         <div>
@@ -229,19 +269,20 @@ h1{font-size:24px;}
           <div class="toggle-sub">Max frame rate</div>
         </div>
       </div>
-      <div class="switch" onclick="tog(this)">
+      <button class="switch" onclick="tog(this)">
         <div class="switch-knob"></div>
-      </div>
+      </button>
     </div>
 
-    <!-- ANTILAG -->
+    <!-- Anti Lag -->
     <div class="toggle-row">
       <div class="toggle-left">
         <div class="toggle-icon">
           <svg viewBox="0 0 24 24">
-            <path d="M4 10 C9 6, 15 6, 20 10"/>
-            <path d="M6 14 C10 11, 14 11, 18 14"/>
-            <circle cx="12" cy="18" r="1.5"/>
+            <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+            <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+            <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+            <circle cx="12" cy="20" r="1"/>
           </svg>
         </div>
         <div>
@@ -249,16 +290,23 @@ h1{font-size:24px;}
           <div class="toggle-sub">Network optimizer</div>
         </div>
       </div>
-      <div class="switch" onclick="tog(this)">
+      <button class="switch" onclick="tog(this)">
         <div class="switch-knob"></div>
-      </div>
+      </button>
     </div>
 
   </div>
 
   <button id="activateBtn" class="activate-btn" onclick="activateApp()">ACTIVATE</button>
-  <div class="status">All systems active</div>
 
+  <div class="status">All systems inactive</div>
+</div>
+
+<!-- LOADING -->
+<div class="loading-screen" id="loadingScreen">
+  <div class="loader"></div>
+  <h2>Optimizing...</h2>
+  <p id="loadingText">Initializing</p>
 </div>
 
 <script>
@@ -272,31 +320,44 @@ function checkKey(){
 }
 
 function tog(btn){
-  btn.classList.toggle("off");
-  checkAll();
-}
-
-function checkAll(){
-  let allOn=true;
-  document.querySelectorAll(".switch").forEach(sw=>{
-    if(sw.classList.contains("off")) allOn=false;
-  });
-
-  let btn=document.getElementById("activateBtn");
-  if(allOn) btn.classList.add("enabled");
-  else btn.classList.remove("enabled");
+  btn.classList.toggle("active");
 }
 
 function activateApp(){
-  let btn=document.getElementById("activateBtn");
+  let switches=document.querySelectorAll(".switch");
+  let allOn=true;
 
-  if(!btn.classList.contains("enabled")){
+  switches.forEach(sw=>{
+    if(!sw.classList.contains("active")) allOn=false;
+  });
+
+  if(!allOn){
     alert("Enable all features first");
     return;
   }
 
-  // SAFE redirect (Play Store)
-  window.location.href="https://play.google.com/store/apps/details?id=com.dts.freefireth";
+  document.getElementById("loadingScreen").style.display="flex";
+
+  let steps=[
+    "Initializing modules",
+    "Optimizing aim system",
+    "Boosting FPS",
+    "Stabilizing network",
+    "Finalizing..."
+  ];
+
+  let i=0;
+
+  let interval=setInterval(()=>{
+    document.getElementById("loadingText").innerText=steps[i];
+    i++;
+
+    if(i>=steps.length){
+      clearInterval(interval);
+      document.getElementById("loadingText").innerText="Activated Successfully";
+    }
+
+  },1200);
 }
 </script>
 

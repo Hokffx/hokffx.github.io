@@ -1,141 +1,206 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Auxilio - @Hokffx</title><style>
+<title>Auxilio - @Hokffx</title>
+
+<style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: hsl(260, 20%, 6%);
   color: hsl(270, 30%, 92%);
-  display: flex; justify-content: center; align-items: center;
-  min-height: 100vh; padding: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
 
-/* 🔐 LOGIN */
-.login-box {
+/* KEY SCREEN */
+.key-screen {
+  text-align: center;
   width: 100%;
   max-width: 380px;
+}
+
+.logo {
+  width: 80px;
+  margin-bottom: 20px;
+}
+
+.key-box {
+  background: hsl(260, 25%, 10%);
+  padding: 20px;
+  border-radius: 16px;
+  border: 1px solid hsl(260, 25%, 18%);
+}
+
+.key-input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  margin-bottom: 12px;
+  background: hsl(260, 20%, 14%);
+  color: white;
   text-align: center;
 }
 
-.login-profile {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 0 auto 14px;
-}
-
-.login-profile img {
+.key-btn {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.login-box input {
-  width: 100%;
-  padding: 16px;
-  border-radius: 16px;
+  padding: 12px;
   border: none;
-  background: hsl(260, 25%, 12%);
-  color: #fff;
-  margin-top: 10px;
-}
-
-.login-box button {
-  width: 100%;
-  margin-top: 12px;
-  padding: 16px;
-  border-radius: 16px;
-  border: none;
-  background: linear-gradient(90deg,#7c3aed,#9333ea);
-  color: #fff;
-}
-
-.error {
-  color: red;
-  font-size: 12px;
-  margin-top: 10px;
-  display: none;
-}
-
-/* 🟣 ORIGINAL PANEL */
-.panel { width: 100%; max-width: 380px; display:none; }
-.header { text-align: center; margin-bottom: 24px; }
-.icon-box {
-  width: 64px; height: 64px; margin: 0 auto 12px;
+  border-radius: 10px;
   background: hsl(270, 80%, 60%);
-  border-radius: 16px; display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 0 40px hsla(270, 80%, 60%, 0.4);
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
 }
-.icon-box svg { width: 32px; height: 32px; stroke: #fff; fill: none; stroke-width: 2; }
-h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
-.subtitle { font-size: 11px; color: hsl(260, 15%, 55%); letter-spacing: 3px; text-transform: uppercase; margin-top: 4px; }
-.controls { display: flex; flex-direction: column; gap: 12px; }
-.toggle-row {
-  display: flex; align-items: center; justify-content: space-between;
-  background: hsl(260, 25%, 10%); border: 1px solid hsl(260, 25%, 18%);
-  border-radius: 16px; padding: 16px 20px;
+
+/* PANEL */
+.panel { display: none; width: 100%; max-width: 380px; }
+
+.header { text-align: center; margin-bottom: 24px; }
+
+.icon-box {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 12px;
+  background: hsl(270, 80%, 60%);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.toggle-left { display: flex; align-items: center; gap: 16px; }
-.toggle-icon {
-  width: 44px; height: 44px; background: hsl(260, 30%, 16%);
-  border-radius: 12px; display: flex; align-items: center; justify-content: center;
-}
-.toggle-icon svg { width: 20px; height: 20px; stroke: hsl(270, 80%, 60%); fill: none; stroke-width: 2; }
-.toggle-label { font-size: 14px; font-weight: 600; }
-.toggle-sub { font-size: 12px; color: hsl(260, 15%, 55%); }
-.switch {
-  width: 56px; height: 32px; border-radius: 16px; border: none; cursor: pointer;
-  position: relative; transition: background 0.3s;
-  background: hsl(270, 80%, 60%); box-shadow: 0 0 16px hsla(270, 80%, 60%, 0.5);
-}
-.switch.off { background: hsl(260, 20%, 14%); box-shadow: none; }
-.switch-knob {
-  position: absolute; top: 4px; width: 24px; height: 24px;
-  background: #fff; border-radius: 50%;
-  transition: left 0.3s;
-  left: 28px;
-}
-.switch.off .switch-knob { left: 4px; }
-.status {
-  text-align: center; margin-top: 24px; font-size: 12px;
+
+h1 { font-size: 24px; }
+
+.subtitle {
+  font-size: 11px;
   color: hsl(260, 15%, 55%);
+  letter-spacing: 3px;
 }
-.status-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: #22c55e;
-  display: inline-block;
-  margin-right: 6px;
+
+.controls { display: flex; flex-direction: column; gap: 12px; }
+
+.toggle-row {
+  display: flex;
+  justify-content: space-between;
+  background: hsl(260, 25%, 10%);
+  padding: 16px;
+  border-radius: 16px;
 }
-</style></head><body><!-- 🔐 LOGIN --><div class="login-box">  <!-- 🖼️ PROFILE IMAGE -->  <div class="login-profile">
-    <img src="profile.png">
-  </div>  <h2>Enter Key</h2>  <input type="password" id="key" placeholder="Enter key...">
-  <button onclick="checkKey()">Unlock</button>
-  <div class="error" id="error">❌ Wrong password</div>
-</div><!-- 🟣 YOUR ORIGINAL PANEL --><div class="panel" id="panel">  <!-- SAME CONTENT (UNCHANGED) -->  <div class="header">
-    <div class="icon-box">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>
-    </div>
+
+.toggle-left { display: flex; gap: 12px; align-items: center; }
+
+.switch {
+  width: 56px;
+  height: 32px;
+  border-radius: 16px;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  background: hsl(270, 80%, 60%);
+}
+
+.switch.off { background: hsl(260, 20%, 14%); }
+
+.switch-knob {
+  position: absolute;
+  top: 4px;
+  left: 28px;
+  width: 24px;
+  height: 24px;
+  background: white;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.switch.off .switch-knob { left: 4px; }
+
+.status {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 12px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- KEY SYSTEM -->
+<div class="key-screen" id="keyScreen">
+  <!-- LOGO -->
+  <img src="logo.png" class="logo">
+
+  <div class="key-box">
+    <input type="text" id="keyInput" class="key-input" placeholder="Enter Key">
+    <button class="key-btn" onclick="checkKey()">Unlock</button>
+  </div>
+</div>
+
+<!-- MAIN PANEL -->
+<div class="panel" id="panel">
+  <div class="header">
+    <div class="icon-box"></div>
     <h1>Auxilio</h1>
     <p class="subtitle">@Hokffx</p>
-  </div>  <div class="controls">
-    <!-- (ALL YOUR ORIGINAL TOGGLES SAME) -->
-  </div>  <div class="status"><span class="status-dot"></span>All systems active</div>
-</div><script>
-function tog(btn){ btn.classList.toggle('off'); }
+  </div>
 
-function checkKey(){
-  let key=document.getElementById("key").value;
+  <div class="controls">
 
-  if(key==="Hokffx24266"){
-    document.querySelector(".login-box").style.display="none";
-    document.getElementById("panel").style.display="block";
-  }else{
-    document.getElementById("error").style.display="block";
+    <div class="toggle-row">
+      <div class="toggle-left">Aimbot</div>
+      <button class="switch" onclick="tog(this)">
+        <div class="switch-knob"></div>
+      </button>
+    </div>
+
+    <div class="toggle-row">
+      <div class="toggle-left">Headshot Lock</div>
+      <button class="switch" onclick="tog(this)">
+        <div class="switch-knob"></div>
+      </button>
+    </div>
+
+    <div class="toggle-row">
+      <div class="toggle-left">120 FPS</div>
+      <button class="switch" onclick="tog(this)">
+        <div class="switch-knob"></div>
+      </button>
+    </div>
+
+    <div class="toggle-row">
+      <div class="toggle-left">Anti Lag</div>
+      <button class="switch" onclick="tog(this)">
+        <div class="switch-knob"></div>
+      </button>
+    </div>
+
+  </div>
+
+  <div class="status">All systems active</div>
+</div>
+
+<script>
+function checkKey() {
+  const key = document.getElementById("keyInput").value;
+
+  if (key === "Hokffx24266") {
+    document.getElementById("keyScreen").style.display = "none";
+    document.getElementById("panel").style.display = "block";
+  } else {
+    alert("Invalid Key");
   }
 }
-</script></body>
+
+function tog(btn) {
+  btn.classList.toggle("off");
+}
+</script>
+
+</body>
 </html>
